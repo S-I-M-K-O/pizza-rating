@@ -1,4 +1,4 @@
-const API = "http://backend:8080/api";
+const API = "/api";
 
 async function loadPizzerias() {
     const res = await fetch(`${API}/pizzerias`);

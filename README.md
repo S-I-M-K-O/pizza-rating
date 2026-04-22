@@ -20,6 +20,8 @@ http://localhost
 
 **For mobile access**: Other devices on your network can access the app at `http://YOUR_COMPUTER_IP` (find your computer's IP address and share it with others).
 
+**Note**: The frontend now proxies API requests through nginx to the backend, so everything works seamlessly from any device on the network.
+
 The backend will be running on: `http://localhost:8080`
 
 ## How to Use
