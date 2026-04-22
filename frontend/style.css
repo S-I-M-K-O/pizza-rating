@@ -14,7 +14,14 @@
     --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     --shadow-hover: 0 4px 20px rgba(0, 0, 0, 0.15);
     --border-radius: 12px;
+    --border-radius-sm: 8px;
+    --border-radius-xs: 6px;
     --transition: all 0.3s ease;
+    --container-padding: 20px;
+    --form-padding: 30px;
+    --card-padding: 25px;
+    --input-height: 48px;
+    --textarea-min-height: 80px;
 }
 
 * {
@@ -34,7 +41,7 @@ body {
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
+    padding: var(--container-padding);
 }
 
 /* Header */
@@ -65,7 +72,7 @@ h1 {
 .form-card {
     background: var(--white);
     border-radius: var(--border-radius);
-    padding: 30px;
+    padding: var(--form-padding);
     box-shadow: var(--shadow);
     transition: var(--transition);
 }
@@ -104,6 +111,20 @@ h1 {
     font-family: inherit;
     transition: var(--transition);
     background: var(--light-bg);
+    box-sizing: border-box;
+    min-height: 20px; /* Ensure consistent baseline height */
+}
+
+.form-group input {
+    height: var(--input-height);
+    border-radius: var(--border-radius-sm);
+}
+
+.form-group textarea {
+    min-height: var(--textarea-min-height);
+    border-radius: var(--border-radius-sm);
+    resize: vertical;
+    line-height: 1.4;
 }
 
 .form-group input:focus,
@@ -181,7 +202,7 @@ h1 {
 .pizzeria {
     background: var(--white);
     border-radius: var(--border-radius);
-    padding: 25px;
+    padding: var(--card-padding);
     box-shadow: var(--shadow);
     transition: var(--transition);
     border-left: 5px solid var(--primary-color);
@@ -238,6 +259,20 @@ h1 {
 }
 
 /* Responsive Design */
+@media (max-width: 1024px) {
+    .container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 2.2rem;
+    }
+
+    .form-card {
+        padding: 25px;
+    }
+}
+
 @media (max-width: 768px) {
     .container {
         padding: 15px;
@@ -253,14 +288,38 @@ h1 {
 
     .form-card {
         padding: 20px;
+        margin: 0 -5px; /* Extend slightly beyond container padding */
     }
 
     .form-card h2 {
         font-size: 1.3rem;
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 18px;
+    }
+
+    .form-group label {
+        font-size: 0.9rem;
+        margin-bottom: 6px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        padding: 12px 14px;
+        font-size: 16px; /* Prevents zoom on iOS */
+        border-radius: 6px;
+    }
+
+    .submit-btn {
+        padding: 14px 18px;
+        font-size: 1rem;
     }
 
     .pizzeria {
         padding: 20px;
+        margin: 0 -5px; /* Extend slightly beyond container padding */
     }
 
     .pizzeria h2 {
@@ -272,43 +331,207 @@ h1 {
 
     .pizzeria .average {
         align-self: flex-end;
+        font-size: 0.85rem;
+        padding: 3px 10px;
+    }
+
+    .pizzeria p {
+        padding: 12px 14px;
+        margin-bottom: 10px;
     }
 
     .ratings-section h2 {
         font-size: 1.5rem;
+        margin-bottom: 15px;
+    }
+
+    .ratings-list {
+        gap: 15px;
+    }
+}
+
+@media (max-width: 640px) {
+    .container {
+        padding: 12px;
+    }
+
+    h1 {
+        font-size: 1.9rem;
+    }
+
+    .form-card {
+        padding: 18px;
+        border-radius: 10px;
+    }
+
+    .form-card h2 {
+        font-size: 1.25rem;
+        margin-bottom: 18px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        padding: 11px 13px;
+        font-size: 16px;
+        border-radius: 6px;
+    }
+
+    .submit-btn {
+        padding: 13px 16px;
+        font-size: 0.95rem;
+        border-radius: 6px;
+    }
+
+    .pizzeria {
+        padding: 18px;
+        border-radius: 10px;
+    }
+
+    .pizzeria h2 {
+        font-size: 1.15rem;
+    }
+
+    .pizzeria p {
+        padding: 11px 13px;
+        border-radius: 6px;
     }
 }
 
 @media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+
+    header {
+        margin-bottom: 30px;
+    }
+
     h1 {
-        font-size: 1.8rem;
+        font-size: 1.7rem;
+        margin-bottom: 8px;
+    }
+
+    .subtitle {
+        font-size: 0.95rem;
+    }
+
+    .rating-form-section {
+        margin-bottom: 30px;
     }
 
     .form-card {
-        padding: 15px;
+        padding: 16px;
+        border-radius: 8px;
+    }
+
+    .form-card h2 {
+        font-size: 1.2rem;
+        margin-bottom: 16px;
+    }
+
+    .form-group {
+        margin-bottom: 16px;
+    }
+
+    .form-group label {
+        font-size: 0.9rem;
+        margin-bottom: 5px;
     }
 
     .form-group input,
     .form-group textarea {
         padding: 10px 12px;
         font-size: 16px; /* Prevents zoom on iOS */
+        border-radius: 6px;
+        border-width: 1px;
+    }
+
+    .rating-hint {
+        font-size: 0.75rem;
     }
 
     .submit-btn {
         padding: 12px 16px;
-        font-size: 1rem;
+        font-size: 0.95rem;
+        border-radius: 6px;
+    }
+
+    .ratings-section h2 {
+        font-size: 1.3rem;
+        margin-bottom: 12px;
     }
 
     .pizzeria {
-        padding: 15px;
+        padding: 16px;
+        border-radius: 8px;
     }
 
     .pizzeria h2 {
         font-size: 1.1rem;
+        margin-bottom: 12px;
+    }
+
+    .pizzeria .average {
+        font-size: 0.8rem;
+        padding: 2px 8px;
     }
 
     .pizzeria p {
         padding: 10px 12px;
+        margin-bottom: 8px;
+        border-radius: 6px;
+        font-size: 0.9rem;
+    }
+
+    .pizzeria .reviewer {
+        font-size: 0.95rem;
+    }
+
+    .pizzeria .score {
+        font-size: 0.9rem;
+    }
+
+    .pizzeria .comment {
+        font-size: 0.85rem;
+        margin-top: 3px;
+    }
+
+    .ratings-list {
+        gap: 12px;
+    }
+
+    .message {
+        padding: 10px 12px;
+        font-size: 0.9rem;
+        margin-bottom: 16px;
+    }
+}
+
+/* Mobile-specific improvements */
+@media (max-width: 480px) {
+    /* Ensure touch targets are at least 44px */
+    .submit-btn {
+        min-height: 44px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        min-height: 44px;
+        -webkit-appearance: none; /* Remove iOS styling */
+        appearance: none;
+    }
+
+    .form-group input {
+        height: 44px;
+    }
+
+    /* Better spacing for mobile */
+    .form-group {
+        margin-bottom: 16px;
+    }
+
+    .pizzeria p {
+        margin-bottom: 8px;
     }
 }
 

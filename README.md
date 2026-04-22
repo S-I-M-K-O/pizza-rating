@@ -1,13 +1,14 @@
 ## Features
 
 - 🍕 **Rate Pizzerias**: Submit ratings from 1-6 with optional comments
-- 📱 **Mobile-Friendly**: Responsive design optimized for phones and tablets
+- 📱 **Mobile-First Design**: Fully responsive interface optimized for phones and tablets
 - 🌐 **Multi-Device Access**: Share ratings across devices on your network
 - ⭐ **Smart Sorting**: Pizzerias and ratings sorted by highest scores first
 - ⚡ **Real-time Updates**: See new ratings instantly across all devices
 - 🎨 **Modern UI**: Beautiful gradient design with smooth animations
 - ✅ **Form Validation**: Client-side validation with helpful error messages
 - 🔄 **Loading States**: Visual feedback during form submission
+- 📏 **Consistent Sizing**: Uniform form elements across all devices
 
 ## Setup and Running
 
@@ -27,10 +28,12 @@ http://localhost
 
 ### Mobile & Tablet Usage
 
-The app is fully optimized for mobile devices:
+The app is fully optimized for mobile devices with:
 
-- **Touch-Friendly Forms**: Large input fields prevent zoom on iOS
-- **Responsive Layout**: Adapts beautifully to any screen size
+- **Responsive Design**: Adapts seamlessly from phones to tablets to desktops
+- **Touch-Friendly**: All buttons and inputs meet accessibility standards (44px minimum)
+- **No Zoom Issues**: Prevents iOS zoom on form focus with proper font sizing
+- **Consistent Layout**: Form elements maintain uniform sizing across all devices
 - **Network Sharing**: Access from any device on your WiFi network
 - **Fast Loading**: Optimized for mobile connections
 
