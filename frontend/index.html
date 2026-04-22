@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pizzeria Ratings</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>🍕 Pizzeria Ratings</h1>
+
+<form id="ratingForm">
+    <input id="pizzeria" placeholder="Pizzeria Name" required>
+    <input id="reviewer" placeholder="Your Name" required>
+    <input id="score" type="number" min="1" max="6" placeholder="Score (1–6)" required>
+    <textarea id="comment" placeholder="Comment"></textarea>
+    <button>Submit Rating</button>
+</form>
+
+<div id="list"></div>
+
+<script src="script.js"></script>
+</body>
+</html>

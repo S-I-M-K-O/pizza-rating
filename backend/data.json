@@ -1,0 +1,39 @@
+[
+  {
+    "name": "Pizza Roma",
+    "ratings": [
+      {
+        "reviewer": "Szymon",
+        "score": 5,
+        "comment": "Very good pizza, crispy base and fresh ingredients."
+      },
+      {
+        "reviewer": "Anna",
+        "score": 4,
+        "comment": "Tasty but a bit expensive."
+      }
+    ],
+    "average": 4.5
+  },
+  {
+    "name": "Napoli Express",
+    "ratings": [
+      {
+        "reviewer": "Mark",
+        "score": 3,
+        "comment": "Okay for a quick lunch."
+      },
+      {
+        "reviewer": "Lena",
+        "score": 6,
+        "comment": "Best pizza in town!"
+      },
+      {
+        "reviewer": "Tom",
+        "score": 5,
+        "comment": "Great taste and friendly staff."
+      }
+    ],
+    "average": 4.7
+  }
+]
