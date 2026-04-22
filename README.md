@@ -1,6 +1,13 @@
-# Pizza Rating App
+## Features
 
-A web application for rating pizzerias and viewing ratings from other users.
+- 🍕 **Rate Pizzerias**: Submit ratings from 1-6 with optional comments
+- 📱 **Mobile-Friendly**: Responsive design optimized for phones and tablets
+- 🌐 **Multi-Device Access**: Share ratings across devices on your network
+- ⭐ **Smart Sorting**: Pizzerias and ratings sorted by highest scores first
+- ⚡ **Real-time Updates**: See new ratings instantly across all devices
+- 🎨 **Modern UI**: Beautiful gradient design with smooth animations
+- ✅ **Form Validation**: Client-side validation with helpful error messages
+- 🔄 **Loading States**: Visual feedback during form submission
 
 ## Setup and Running
 
@@ -18,9 +25,16 @@ Then open in your browser:
 http://localhost
 ```
 
-**For mobile access**: Other devices on your network can access the app at `http://YOUR_COMPUTER_IP` (find your computer's IP address and share it with others).
+### Mobile & Tablet Usage
 
-**Note**: The frontend now proxies API requests through nginx to the backend, so everything works seamlessly from any device on the network.
+The app is fully optimized for mobile devices:
+
+- **Touch-Friendly Forms**: Large input fields prevent zoom on iOS
+- **Responsive Layout**: Adapts beautifully to any screen size
+- **Network Sharing**: Access from any device on your WiFi network
+- **Fast Loading**: Optimized for mobile connections
+
+**For mobile access**: Other devices on your network can access the app at `http://YOUR_COMPUTER_IP` (find your computer's IP address and share it with others).
 
 The backend will be running on: `http://localhost:8080`
 
