@@ -15,8 +15,10 @@ docker compose up --build
 
 Then open in your browser:
 ```
-frontend/index.html
+http://localhost
 ```
+
+**For mobile access**: Other devices on your network can access the app at `http://YOUR_COMPUTER_IP` (find your computer's IP address and share it with others).
 
 The backend will be running on: `http://localhost:8080`
 

@@ -7,3 +7,10 @@ services:
       - "8080:8080"
     volumes:
       - ./backend/data.json:/app/data.json
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
