@@ -1,39 +1,168 @@
 [
-  {
-    "name": "Pizza Roma",
-    "ratings": [
-      {
-        "reviewer": "Szymon",
-        "score": 5,
-        "comment": "Very good pizza, crispy base and fresh ingredients."
-      },
-      {
-        "reviewer": "Anna",
-        "score": 4,
-        "comment": "Tasty but a bit expensive."
-      }
-    ],
-    "average": 4.5
-  },
-  {
-    "name": "Napoli Express",
-    "ratings": [
-      {
-        "reviewer": "Mark",
-        "score": 3,
-        "comment": "Okay for a quick lunch."
-      },
-      {
-        "reviewer": "Lena",
-        "score": 6,
-        "comment": "Best pizza in town!"
-      },
-      {
-        "reviewer": "Tom",
-        "score": 5,
-        "comment": "Great taste and friendly staff."
-      }
-    ],
-    "average": 4.7
-  }
+    {
+        "name": "Pizza Junge",
+        "ratings": [
+            {
+                "reviewer": "Marc",
+                "score": 1,
+                "comment": "Lass lieber junge"
+            },
+            {
+                "reviewer": "Szymon",
+                "score": 1,
+                "comment": "Nie wieder"
+            },
+            {
+                "reviewer": "Chris",
+                "score": 1,
+                "comment": "Arsch"
+            },
+            {
+                "reviewer": "Druschka",
+                "score": 1,
+                "comment": "Noooope"
+            }
+        ],
+        "average": 1
+    },
+    {
+        "name": "Dominos",
+        "ratings": [
+            {
+                "reviewer": "Marc",
+                "score": 3,
+                "comment": "Bien pero muy caro"
+            },
+            {
+                "reviewer": "Szymon",
+                "score": 3,
+                "comment": "Preis Leistung mid"
+            },
+            {
+                "reviewer": "Chris",
+                "score": 3,
+                "comment": "Pretty decent, Recht teuer, overrated"
+            },
+            {
+                "reviewer": "Druschka",
+                "score": 4,
+                "comment": "Gute Pizza, sehr teuer"
+            }
+        ],
+        "average": 3.25
+    },
+    {
+        "name": "Vabene",
+        "ratings": [
+            {
+                "reviewer": "Marc",
+                "score": 5,
+                "comment": "Diese gut"
+            },
+            {
+                "reviewer": "Szymon",
+                "score": 5,
+                "comment": "Diese gut"
+            },
+            {
+                "reviewer": "Chris",
+                "score": 5,
+                "comment": "Gute soße, guter Belag - bis auf gekochte Eier als Belag"
+            },
+            {
+                "reviewer": "TOBI",
+                "score": 5,
+                "comment": "Diese sehr gut, diavolo 11/10"
+            },
+            {
+                "reviewer": "Druschka",
+                "score": 3,
+                "comment": "NoBrain"
+            }
+        ],
+        "average": 4.6
+    },
+    {
+        "name": "Bella Pizza",
+        "ratings": [
+            {
+                "reviewer": "Marc",
+                "score": 4,
+                "comment": "Avocado auf Pizza is meh"
+            },
+            {
+                "reviewer": "TOBI",
+                "score": 3,
+                "comment": "War ok bissle zuviel Käse"
+            },
+            {
+                "reviewer": "Chris",
+                "score": 4,
+                "comment": "Geile Soße, viel käse, nicht so geiler Teig"
+            },
+            {
+                "reviewer": "Szymon",
+                "score": 4,
+                "comment": "gute pizza"
+            },
+            {
+                "reviewer": "Druschka",
+                "score": 5,
+                "comment": "Pizza bissl fettig"
+            }
+        ],
+        "average": 4
+    },
+    {
+        "name": "Lussa",
+        "ratings": [
+            {
+                "reviewer": "Szymon",
+                "score": 4,
+                "comment": "Solide"
+            },
+            {
+                "reviewer": "Chris",
+                "score": 4,
+                "comment": "Pretty decent"
+            },
+            {
+                "reviewer": "Marc",
+                "score": 4,
+                "comment": "Schon gut. Guter Teig."
+            },
+            {
+                "reviewer": "Druschka",
+                "score": 3,
+                "comment": "Öh?"
+            }
+        ],
+        "average": 3.75
+    },
+    {
+        "name": "Dinuovo",
+        "ratings": [
+            {
+                "reviewer": "Szymon",
+                "score": 6,
+                "comment": "Me very happy"
+            },
+            {
+                "reviewer": "TOBI",
+                "score": 6,
+                "comment": "Fresh as lemon"
+            },
+            {
+                "reviewer": "Chris",
+                "score": 5,
+                "comment": "Super gut, gute Zutaten, gute soße, hätte ein bisschen länger im Ofen sein können"
+            },
+            {
+                "reviewer": "Druschka",
+                "score": 5,
+                "comment": "Wirklich gute Pizza, aber Diavolo war leider keine Diavolo"
+            }
+        ],
+        "average": 5.5
+    }
 ]
