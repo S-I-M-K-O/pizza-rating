@@ -5,6 +5,7 @@ import (
     "log"
     "net/http"
     "os"
+    "strings"
 )
 
 type Rating struct {
@@ -23,6 +24,14 @@ var (
     pizzerias []Pizzeria
     dataFile  = "data.json"
 )
+
+func normalizePizzeriaName(name string) string {
+    return strings.ToLower(strings.TrimSpace(name))
+}
+
+func formatPizzeriaName(name string) string {
+    return strings.Title(strings.ToLower(strings.TrimSpace(name)))
+}
 
 func loadData() {
     file, err := os.Open(dataFile)
@@ -72,8 +81,11 @@ func postRating(w http.ResponseWriter, r *http.Request) {
         return
     }
 
+    // Normalize the input pizzeria name for comparison
+    normalizedInputName := normalizePizzeriaName(input.Pizzeria)
+
     for i := range pizzerias {
-        if pizzerias[i].Name == input.Pizzeria {
+        if normalizePizzeriaName(pizzerias[i].Name) == normalizedInputName {
             pizzerias[i].Ratings = append(pizzerias[i].Ratings, Rating{
                 Reviewer: input.Reviewer,
                 Score:    input.Score,
@@ -86,8 +98,9 @@ func postRating(w http.ResponseWriter, r *http.Request) {
         }
     }
 
+    // Create new pizzeria with properly formatted name
     pizzerias = append(pizzerias, Pizzeria{
-        Name: input.Pizzeria,
+        Name: formatPizzeriaName(input.Pizzeria),
         Ratings: []Rating{{
             Reviewer: input.Reviewer,
             Score:    input.Score,

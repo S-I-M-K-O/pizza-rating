@@ -9,6 +9,7 @@
 - ✅ **Form Validation**: Client-side validation with helpful error messages
 - 🔄 **Loading States**: Visual feedback during form submission
 - 📏 **Consistent Sizing**: Uniform form elements across all devices
+- 🧹 **Duplicate Prevention**: Automatic normalization of pizzeria names (removes extra spaces, converts to title case)
 
 ## Setup and Running
 

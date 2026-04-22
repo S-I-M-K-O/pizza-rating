@@ -147,6 +147,14 @@ h1 {
     font-style: italic;
 }
 
+.form-hint {
+    display: block;
+    font-size: 0.75rem;
+    color: #6c757d;
+    font-style: italic;
+    margin-top: 4px;
+}
+
 /* Submit Button */
 .submit-btn {
     width: 100%;
@@ -500,10 +508,12 @@ h1 {
         gap: 12px;
     }
 
-    .message {
-        padding: 10px 12px;
-        font-size: 0.9rem;
-        margin-bottom: 16px;
+    .rating-hint {
+        font-size: 0.75rem;
+    }
+
+    .form-hint {
+        font-size: 0.7rem;
     }
 }
 
