@@ -23,19 +23,28 @@ async function loadPizzerias() {
 document.getElementById("ratingForm").onsubmit = async e => {
     e.preventDefault();
 
-    await fetch(`${API}/rating`, {
+    const pizzeriaInput = document.getElementById("pizzeria");
+    const reviewerInput = document.getElementById("reviewer");
+    const scoreInput = document.getElementById("score");
+    const commentInput = document.getElementById("comment");
+
+    const res = await fetch(`${API}/rating`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-            pizzeria: pizzeria.value,
-            reviewer: reviewer.value,
-            score: +score.value,
-            comment: comment.value
+            pizzeria: pizzeriaInput.value,
+            reviewer: reviewerInput.value,
+            score: +scoreInput.value,
+            comment: commentInput.value
         })
     });
 
-    e.target.reset();
-    loadPizzerias();
+    if (res.ok) {
+        e.target.reset();
+        loadPizzerias();
+    } else {
+        alert("Error submitting rating");
+    }
 };
 
 loadPizzerias();

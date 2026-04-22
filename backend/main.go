@@ -49,12 +49,14 @@ func saveData() {
 }
 
 func getPizzerias(w http.ResponseWriter, r *http.Request) {
-    enableCORS(w)
-    json.NewEncoder(w).Encode(pizzerias)
+    enableCORS(w, r)
+    if err := json.NewEncoder(w).Encode(pizzerias); err != nil {
+        log.Printf("Error encoding pizzerias: %v", err)
+    }
 }
 
 func postRating(w http.ResponseWriter, r *http.Request) {
-    enableCORS(w)
+    enableCORS(w, r)
 
     var input struct {
         Pizzeria string `json:"pizzeria"`
@@ -63,7 +65,12 @@ func postRating(w http.ResponseWriter, r *http.Request) {
         Comment  string `json:"comment"`
     }
 
-    json.NewDecoder(r.Body).Decode(&input)
+    if err := json.NewDecoder(r.Body).Decode(&input); err != nil {
+        log.Printf("Error decoding input: %v", err)
+        w.WriteHeader(http.StatusBadRequest)
+        json.NewEncoder(w).Encode(map[string]string{"error": "Invalid input"})
+        return
+    }
 
     for i := range pizzerias {
         if pizzerias[i].Name == input.Pizzeria {
@@ -73,6 +80,8 @@ func postRating(w http.ResponseWriter, r *http.Request) {
                 Comment:  input.Comment,
             })
             saveData()
+            w.WriteHeader(http.StatusOK)
+            json.NewEncoder(w).Encode(map[string]string{"status": "rating added"})
             return
         }
     }
@@ -87,11 +96,20 @@ func postRating(w http.ResponseWriter, r *http.Request) {
     })
 
     saveData()
+    w.WriteHeader(http.StatusCreated)
+    json.NewEncoder(w).Encode(map[string]string{"status": "pizzeria created"})
 }
 
-func enableCORS(w http.ResponseWriter) {
+func enableCORS(w http.ResponseWriter, r *http.Request) {
     w.Header().Set("Access-Control-Allow-Origin", "*")
+    w.Header().Set("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+    w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
     w.Header().Set("Content-Type", "application/json")
+    
+    if r.Method == http.MethodOptions {
+        w.WriteHeader(http.StatusOK)
+        return
+    }
 }
 
 func main() {
