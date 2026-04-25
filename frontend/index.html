@@ -13,28 +13,28 @@
 <body>
     <div class="container">
         <header>
-            <h1>🍕 Pizzeria Ratings</h1>
+            <h1>Pizzeria Ratings</h1>
             <p class="subtitle">Share your pizza experiences with friends!</p>
         </header>
 
         <main>
             <section class="rating-form-section">
                 <div class="form-card">
-                    <h2>✨ Add Your Rating</h2>
+                    <h2>Add Your Rating</h2>
                     <form id="ratingForm">
                         <div class="form-group">
-                            <label for="pizzeria">🍕 Pizzeria Name</label>
+                            <label for="pizzeria">Pizzeria Name</label>
                             <input id="pizzeria" type="text" placeholder="Enter pizzeria name" required>
                             <small class="form-hint">Extra spaces will be removed automatically</small>
                         </div>
 
                         <div class="form-group">
-                            <label for="reviewer">👤 Your Name</label>
+                            <label for="reviewer">Your Name</label>
                             <input id="reviewer" type="text" placeholder="Enter your name" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="score">⭐ Rating (1-6)</label>
+                            <label for="score">Rating (1-6)</label>
                             <div class="rating-input">
                                 <input id="score" type="number" min="1" max="6" placeholder="1-6" required>
                                 <div class="rating-hint">1 = Poor, 6 = Excellent</div>
@@ -42,12 +42,12 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="comment">💬 Comment (Optional)</label>
+                            <label for="comment">Comment (Optional)</label>
                             <textarea id="comment" placeholder="Share your thoughts about this pizzeria..." rows="3"></textarea>
                         </div>
 
                         <button type="submit" class="submit-btn">
-                            <span class="btn-text">🚀 Submit Rating</span>
+                            <span class="btn-text">Submit Rating</span>
                             <span class="btn-loading" style="display: none;">⏳ Submitting...</span>
                         </button>
                     </form>
