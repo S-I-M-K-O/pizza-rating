@@ -1,0 +1,76 @@
+# https://taskfile.dev — install with `brew install go-task`
+version: "3"
+
+vars:
+  BACKEND_DIR: backend
+
+tasks:
+  default:
+    desc: List available tasks
+    cmds:
+      - task --list
+    silent: true
+
+  up:
+    desc: Build and start the app in the background (http://localhost)
+    cmds:
+      - docker compose up --build -d
+      - echo "App running at http://localhost"
+
+  down:
+    desc: Stop the app
+    cmds:
+      - docker compose down
+
+  restart:
+    desc: Rebuild and restart the app
+    cmds:
+      - task: down
+      - task: up
+
+  logs:
+    desc: Follow container logs
+    cmds:
+      - docker compose logs -f
+
+  build:
+    desc: Build the Docker images
+    cmds:
+      - docker compose build
+
+  dev:
+    desc: Run the backend locally without Docker on :8080 (uses backend/data/data.json)
+    dir: "{{.BACKEND_DIR}}"
+    cmds:
+      - go run .
+
+  test:
+    desc: Run backend tests with the race detector
+    dir: "{{.BACKEND_DIR}}"
+    cmds:
+      - go test -race ./...
+
+  lint:
+    desc: Check formatting and run go vet
+    dir: "{{.BACKEND_DIR}}"
+    cmds:
+      - test -z "$(gofmt -l .)" || (gofmt -l . && echo "run 'task fmt'" && exit 1)
+      - go vet ./...
+
+  fmt:
+    desc: Format Go code
+    dir: "{{.BACKEND_DIR}}"
+    cmds:
+      - gofmt -w .
+
+  check:
+    desc: Lint and test (run before committing)
+    cmds:
+      - task: lint
+      - task: test
+
+  backup:
+    desc: Copy the ratings file to backend/data/backups/ with a timestamp
+    cmds:
+      - mkdir -p {{.BACKEND_DIR}}/data/backups
+      - cp {{.BACKEND_DIR}}/data/data.json {{.BACKEND_DIR}}/data/backups/data-$(date +%Y%m%d-%H%M%S).json

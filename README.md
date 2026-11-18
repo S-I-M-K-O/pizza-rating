@@ -19,8 +19,20 @@
 ### Run the Project
 
 ```bash
-docker compose up --build
+task up          # or: docker compose up --build -d
 ```
+
+Common tasks (needs [Task](https://taskfile.dev), `brew install go-task`):
+
+| Task | What it does |
+|---|---|
+| `task up` / `task down` | Start / stop the app |
+| `task logs` | Follow container logs |
+| `task dev` | Run the backend locally with `go run` |
+| `task check` | gofmt check, `go vet` and tests with the race detector |
+| `task backup` | Copy the ratings file to `backend/data/backups/` |
+
+Run `task` to list everything.
 
 Then open in your browser:
 ```
@@ -46,25 +58,25 @@ The backend will be running on: `http://localhost:8080`
 
 ### Adding a Rating
 
-1. Fill in the form on the webpage:
-   - **Pizzeria Name**: The name of the pizzeria you want to rate
-   - **Your Name**: Your reviewer name
-   - **Score**: Rate from 1-6 (6 being the best)
-   - **Comment**: Optional comment about your experience
+1. Fill in the **Rate a pizzeria** form:
+   - **Pizzeria**: pick an existing one from the suggestions or type a new name
+   - **Your name**: remembered in your browser for next time
+   - **Score**: tap a slice, 1 to 6 (6 is best)
+   - **Comment**: optional, up to 500 characters
 
-2. Click **Submit Rating**
+2. Click **Add rating**. The leaderboard updates right away.
 
-3. Your rating will be added to the database and the page will refresh to show your new rating
+You can also open a pizzeria's ratings on the leaderboard and click **Rate …** to prefill the form.
 
 ### Viewing Ratings
 
-All pizzerias and their ratings are displayed automatically below the form. You can see:
-- Pizzeria name with average rating
-- Individual ratings from reviewers with their scores and comments
+The leaderboard ranks pizzerias by average score (equal averages share a rank). Expand a pizzeria to read every rating and comment.
 
 ### Data Storage
 
-Ratings are stored in `backend/data.json` which persists between sessions due to Docker volumes.
+Ratings are stored in `backend/data/data.json`. The `backend/data/` directory is mounted into the container, and every save writes a temp file and renames it into place, so the file is never left half-written. If the file is malformed, the backend refuses to start rather than overwrite it.
+
+The server validates every rating: score 1–6, pizzeria name and reviewer required (max 80 / 40 characters), comment max 500 characters.
 
 ## Technical Details
 
@@ -72,6 +84,6 @@ Ratings are stored in `backend/data.json` which persists between sessions due to
 - **Backend**: Go HTTP server
 - **API Endpoints**:
   - `GET /api/pizzerias` - Retrieve all pizzerias and ratings
-  - `POST /api/rating` - Submit a new rating
+  - `POST /api/rating` - Submit a new rating (`{"pizzeria", "reviewer", "score", "comment"}`); returns `400` with `{"error": "..."}` on invalid input
 
 

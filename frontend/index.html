@@ -1,67 +1,104 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="pizzabox">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#e74c3c">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <title>🍕 Pizzeria Ratings</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#d9b88c">
+    <meta name="description" content="Our group's pizzeria leaderboard. Rate a pizzeria from 1 to 6.">
+    <title>Pizza Rating</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍕</text></svg>">
+    <!-- Applies the saved style before first paint (external because the CSP forbids inline scripts). -->
+    <script src="theme-init.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Cinzel+Decorative:wght@700&family=Cinzel:wght@500;700&family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Monoton&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Pizzeria Ratings</h1>
-            <p class="subtitle">Share your pizza experiences with friends!</p>
-        </header>
+    <svg width="0" height="0" class="sprite" aria-hidden="true">
+        <symbol id="icon-slice" viewBox="0 0 24 28">
+            <path d="M2.2 4.4C8.6 1 15.4 1 21.8 4.4L12 26.5Z"/>
+        </symbol>
+        <symbol id="icon-d20" viewBox="0 0 24 28">
+            <path fill-rule="evenodd" d="M12 1 22.5 7v14L12 27 1.5 21V7Zm0 6.5L5.5 19h13Z"/>
+        </symbol>
+    </svg>
 
-        <main>
-            <section class="rating-form-section">
-                <div class="form-card">
-                    <h2>Add Your Rating</h2>
-                    <form id="ratingForm">
-                        <div class="form-group">
-                            <label for="pizzeria">Pizzeria Name</label>
-                            <input id="pizzeria" type="text" placeholder="Enter pizzeria name" required>
-                            <small class="form-hint">Extra spaces will be removed automatically</small>
+    <header class="lid">
+        <div class="lid-inner">
+            <div class="stamp" aria-hidden="true">
+                <span data-copy="stamp1">Fresh</span>
+                <span data-copy="stamp2">&amp;</span>
+                <span data-copy="stamp3">Hot</span>
+            </div>
+            <div class="lid-text">
+                <h1>Pizza Rating</h1>
+                <p class="lid-sub" id="summary">Our pizzeria leaderboard, scored 1 to 6.</p>
+            </div>
+            <div class="lid-actions">
+                <fieldset class="theme-switch">
+                    <legend>Style</legend>
+                    <input type="radio" name="theme" id="theme-pizzabox" value="pizzabox" class="visually-hidden">
+                    <label for="theme-pizzabox"><span class="swatch swatch-pizzabox" aria-hidden="true"></span>Pizza box</label>
+                    <input type="radio" name="theme" id="theme-tavern" value="tavern" class="visually-hidden">
+                    <label for="theme-tavern"><span class="swatch swatch-tavern" aria-hidden="true"></span>Tavern</label>
+                    <input type="radio" name="theme" id="theme-neon" value="neon" class="visually-hidden">
+                    <label for="theme-neon"><span class="swatch swatch-neon" aria-hidden="true"></span>Neon</label>
+                </fieldset>
+            </div>
+        </div>
+    </header>
+
+    <main class="layout">
+        <section class="board" aria-labelledby="board-title">
+            <h2 id="board-title" class="section-title" data-copy="boardTitle">Leaderboard</h2>
+            <ol id="list" class="ranking" aria-live="polite" aria-busy="true">
+                <li class="placeholder">Loading ratings…</li>
+            </ol>
+            <button type="button" id="show-more" class="show-more" aria-controls="list" aria-expanded="false" hidden></button>
+        </section>
+
+        <aside class="order" id="rate" aria-labelledby="rate-title">
+            <div class="slip">
+                <h2 id="rate-title" class="slip-title" data-copy="rateTitle">Rate a pizzeria</h2>
+
+                <div id="message" class="message" role="status" aria-live="polite" hidden></div>
+
+                <form id="ratingForm" novalidate>
+                    <div class="field">
+                        <label for="pizzeria">Pizzeria</label>
+                        <input id="pizzeria" name="pizzeria" type="text" list="pizzeria-names"
+                               maxlength="80" autocomplete="off" required>
+                        <datalist id="pizzeria-names"></datalist>
+                        <small class="hint">Pick an existing one or type a new name.</small>
+                    </div>
+
+                    <div class="field">
+                        <label for="reviewer">Your name</label>
+                        <input id="reviewer" name="reviewer" type="text" maxlength="40"
+                               autocomplete="nickname" required>
+                    </div>
+
+                    <fieldset class="field score-field">
+                        <legend>Score <span class="score-word" id="score-word">6 is best</span></legend>
+                        <div class="score-picker" id="score-picker">
+                            <!-- radio buttons are generated in script.js -->
                         </div>
+                    </fieldset>
 
-                        <div class="form-group">
-                            <label for="reviewer">Your Name</label>
-                            <input id="reviewer" type="text" placeholder="Enter your name" required>
-                        </div>
+                    <div class="field">
+                        <label for="comment">Comment <span class="optional">(optional)</span></label>
+                        <textarea id="comment" name="comment" rows="3" maxlength="500"
+                                  data-copy-placeholder="commentPlaceholder"
+                                  placeholder="Crust, sauce, toppings, price…"></textarea>
+                        <small class="hint counter" id="comment-count">0 / 500</small>
+                    </div>
 
-                        <div class="form-group">
-                            <label for="score">Rating (1-6)</label>
-                            <div class="rating-input">
-                                <input id="score" type="number" min="1" max="6" placeholder="1-6" required>
-                                <div class="rating-hint">1 = Poor, 6 = Excellent</div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="comment">Comment (Optional)</label>
-                            <textarea id="comment" placeholder="Share your thoughts about this pizzeria..." rows="3"></textarea>
-                        </div>
-
-                        <button type="submit" class="submit-btn">
-                            <span class="btn-text">Submit Rating</span>
-                            <span class="btn-loading" style="display: none;">⏳ Submitting...</span>
-                        </button>
-                    </form>
-                </div>
-            </section>
-
-            <section class="ratings-section">
-                <h2>📊 Current Ratings</h2>
-                <div id="list" class="ratings-list">
-                    <div class="loading">Loading ratings...</div>
-                </div>
-            </section>
-        </main>
-    </div>
+                    <button type="submit" class="submit" data-copy="submit">Add rating</button>
+                </form>
+            </div>
+        </aside>
+    </main>
 
     <script src="script.js"></script>
 </body>

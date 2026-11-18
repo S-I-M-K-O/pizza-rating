@@ -1,12 +1,15 @@
-version: "3.9"
-
 services:
   backend:
     build: ./backend
     ports:
       - "8080:8080"
+    environment:
+      DATA_FILE: /app/data/data.json
     volumes:
-      - ./backend/data.json:/app/data.json
+      # Mount the directory (not the file) so saves can be atomic temp-file + rename,
+      # and a missing data.json doesn't get created as a directory by Docker.
+      - ./backend/data:/app/data
+    restart: unless-stopped
 
   frontend:
     build: ./frontend
@@ -14,3 +17,4 @@ services:
       - "80:80"
     depends_on:
       - backend
+    restart: unless-stopped
